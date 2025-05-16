@@ -4,54 +4,68 @@
 }
   
 <div class="banner">  
-    <div class="container py-5 text-center">  
-        <h1 class="display-4 text-white fade-in">Welcome to Movie Explorer</h1>  
-        <p class="lead text-white fade-in">Your one-stop solution for managing movies.</p>  
+    <div class="welcome-section container py-5 text-center">  
+        <h1 class="display-4 fade-in">Welcome to Movie Explorer</h1>  
+        <p class="lead fade-in">Your one-stop solution for managing movies.</p>  
         <a href="/Movies" class="btn btn-primary btn-lg mt-3 fade-in">Explore Movies</a>  
     </div>  
 </div>  
 <style>  
     .banner {  
-        background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/images/banner.jpg') no-repeat center center;  
+        background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/images/banner.jpg') no-repeat center center fixed;  
         background-size: cover;  
         height: 600px;  
         display: flex;  
         align-items: center;  
-        transition: all 0.5s ease;  
+        transition: all 0.3s ease;  
         position: relative;
         overflow: hidden;
     }  
  
-    .banner:hover {  
-        background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/images/banner.jpg') no-repeat center center;  
-        background-size: 105% 105%;
-    }  
- 
-    .fade-in {  
-        opacity: 0;  
-        animation: fadeIn 1.5s forwards;  
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    }  
- 
-    @@keyframes fadeIn {  
-        0% {  
-            opacity: 0;  
-        }  
-        100% {  
-            opacity: 1;  
-        }  
-    }  
-
-    .banner::before {
+    .banner::after {
         content: '';
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4));
-        pointer-events: none;
+        background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+        opacity: 1;
+        transition: opacity 0.3s ease;
     }
+ 
+    .banner:hover::after {
+        opacity: 0.7;
+    }
+
+    .welcome-section {
+        background-color: rgba(var(--navbar-bg-rgb), 0.7) !important;
+        backdrop-filter: blur(10px);
+        border-radius: 1rem;
+        padding: 3rem !important;
+        color: var(--text-primary);
+        border: 1px solid var(--border-color);
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+    }
+ 
+    .fade-in {  
+        opacity: 0;  
+        animation: fadeIn 1.5s forwards;  
+    }  
+ 
+    @@keyframes fadeIn {  
+        0% {  
+            opacity: 0;  
+            transform: translateY(20px);
+        }  
+        100% {  
+            opacity: 1;  
+            transform: translateY(0);
+        }  
+    }  
 
     .banner .container {
         position: relative;
@@ -59,7 +73,7 @@
     }
 
     .banner .btn-primary {
-        background-color: rgba(13, 110, 253, 0.9);
+        background-color: var(--link-color);
         border: none;
         padding: 12px 30px;
         font-weight: 500;
@@ -67,8 +81,14 @@
     }
 
     .banner .btn-primary:hover {
-        background-color: rgba(13, 110, 253, 1);
+        background-color: var(--link-color);
+        opacity: 0.9;
         transform: translateY(-2px);
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Adjust text colors based on theme */
+    [data-theme="dark"] .welcome-section {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     }
 </style>

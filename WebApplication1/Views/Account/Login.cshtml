@@ -1,0 +1,70 @@
+@model WebApplication1.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<link rel="stylesheet" href="~/css/auth.css" />
+
+<button class="theme-switch" onclick="toggleTheme()">
+    <i class="fas fa-moon"></i>
+</button>
+
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h1>Welcome Back</h1>
+            <p>Please sign in to your account</p>
+        </div>
+
+        <form id="account" method="post">
+            <div asp-validation-summary="ModelOnly" class="validation-summary-errors"></div>
+
+            <div class="form-floating">
+                <input asp-for="Email" class="form-control" placeholder="name@example.com" autocomplete="username" />
+                <label asp-for="Email">Email address</label>
+                <span asp-validation-for="Email" class="field-validation-error"></span>
+            </div>
+
+            <div class="form-floating">
+                <input asp-for="Password" class="form-control" placeholder="password" autocomplete="current-password" />
+                <label asp-for="Password">Password</label>
+                <span asp-validation-for="Password" class="field-validation-error"></span>
+            </div>
+
+            <div class="form-check mb-3">
+                <input asp-for="RememberMe" class="form-check-input" />
+                <label asp-for="RememberMe" class="form-check-label">Remember me</label>
+            </div>
+
+            <button type="submit" class="btn btn-auth">Sign In</button>
+
+            <div class="auth-divider">or</div>
+
+            <div class="social-buttons">
+                <button type="button" class="btn btn-social">
+                    <i class="fab fa-google"></i>
+                    Google
+                </button>
+                <button type="button" class="btn btn-social">
+                    <i class="fab fa-microsoft"></i>
+                    Microsoft
+                </button>
+            </div>
+
+            <div class="auth-footer">
+                <p>
+                    <a asp-action="ForgotPassword">Forgot your password?</a>
+                </p>
+                <p>
+                    Don't have an account? <a asp-action="Register">Sign up</a>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://kit.fontawesome.com/your-kit-code.js" crossorigin="anonymous"></script>
+    <script src="~/js/theme.js"></script>
+} 
