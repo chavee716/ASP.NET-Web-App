@@ -2,18 +2,73 @@
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="banner">
-    <div class="container py-5">
-        <h1 class="display-4 text-white">Welcome to WebApplication1</h1>
-        <p class="lead text-white">Your one-stop solution for managing movies.</p>
-    </div>
-</div>
-<style>
-    .banner {
-        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://source.unsplash.com/random/1920x1080/?movie') no-repeat center center;
-        background-size: cover;
-        height: 400px;
-        display: flex;
-        align-items: center;
+  
+<div class="banner">  
+    <div class="container py-5 text-center">  
+        <h1 class="display-4 text-white fade-in">Welcome to Movie Explorer</h1>  
+        <p class="lead text-white fade-in">Your one-stop solution for managing movies.</p>  
+        <a href="/Movies" class="btn btn-primary btn-lg mt-3 fade-in">Explore Movies</a>  
+    </div>  
+</div>  
+<style>  
+    .banner {  
+        background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/images/banner.jpg') no-repeat center center;  
+        background-size: cover;  
+        height: 600px;  
+        display: flex;  
+        align-items: center;  
+        transition: all 0.5s ease;  
+        position: relative;
+        overflow: hidden;
+    }  
+ 
+    .banner:hover {  
+        background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/images/banner.jpg') no-repeat center center;  
+        background-size: 105% 105%;
+    }  
+ 
+    .fade-in {  
+        opacity: 0;  
+        animation: fadeIn 1.5s forwards;  
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }  
+ 
+    @@keyframes fadeIn {  
+        0% {  
+            opacity: 0;  
+        }  
+        100% {  
+            opacity: 1;  
+        }  
+    }  
+
+    .banner::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4));
+        pointer-events: none;
+    }
+
+    .banner .container {
+        position: relative;
+        z-index: 1;
+    }
+
+    .banner .btn-primary {
+        background-color: rgba(13, 110, 253, 0.9);
+        border: none;
+        padding: 12px 30px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .banner .btn-primary:hover {
+        background-color: rgba(13, 110, 253, 1);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
 </style>

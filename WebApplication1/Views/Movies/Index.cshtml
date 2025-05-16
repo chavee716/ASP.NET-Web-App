@@ -3,25 +3,48 @@
     ViewBag.Title = "Movies";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div class="container py-4">
-    <div class="bg-primary text-white p-4 rounded mb-4">
-        <h2 class="mb-0">Movies</h2>
+    <div class="header-section mb-4">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h2 class="display-5 fw-bold text-primary mb-0">Movie Collection</h2>
+                <p class="text-muted mt-2">Discover and manage your favorite movies</p>
+            </div>
+            <div class="col-md-6">
+                <div class="d-flex justify-content-end">
+                    <a class="btn btn-primary btn-lg" asp-action="Create">
+                        <i class="fas fa-plus-circle me-2"></i>Add New Movie
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-    <p>
-        <a class="btn btn-primary" asp-action="Create">Create New Movie</a>
-    </p>
+
     <div class="row">
         @foreach (var item in Model)
         {
             <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow-sm hover-shadow">
+                <div class="card h-100 movie-card">
                     <div class="card-body">
-                        <h5 class="card-title">@item.Name</h5>
-                        <p class="card-text">Id: @item.Id</p>
-                        <div class="d-flex justify-content-between">
-                            <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                            <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                            <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <div class="movie-header mb-3">
+                            <h5 class="card-title text-primary mb-1">@item.Name</h5>
+                            <p class="text-muted small mb-0">ID: @item.Id</p>
+                        </div>
+                        <div class="movie-actions mt-3">
+                            <div class="d-grid gap-2">
+                                <a class="btn btn-outline-primary" asp-action="Details" asp-route-id="@item.Id">
+                                    <i class="fas fa-info-circle me-2"></i>Details
+                                </a>
+                                <div class="btn-group">
+                                    <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@item.Id">
+                                        <i class="fas fa-edit me-2"></i>Edit
+                                    </a>
+                                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">
+                                        <i class="fas fa-trash-alt me-2"></i>Delete
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -29,8 +52,56 @@
         }
     </div>
 </div>
+
 <style>
-    .hover-shadow:hover {
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    .movie-card {
+        border: none;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        background: #ffffff;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
     }
-</style> 
+
+    .movie-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .movie-header {
+        border-bottom: 1px solid #f0f0f0;
+        padding-bottom: 1rem;
+    }
+
+    .movie-actions {
+        opacity: 0.9;
+    }
+
+    .movie-card:hover .movie-actions {
+        opacity: 1;
+    }
+
+    .btn-group {
+        width: 100%;
+    }
+
+    .btn-group .btn {
+        flex: 1;
+    }
+
+    .btn-outline-primary:hover,
+    .btn-outline-warning:hover,
+    .btn-outline-danger:hover {
+        color: white;
+    }
+
+    .header-section {
+        background: linear-gradient(to right, #f8f9fa, #ffffff);
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    }
+</style>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+} 
